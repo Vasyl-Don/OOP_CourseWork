@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kursach_alpha
+namespace Theatre
 {
     public class Performance
     {
-        public enum Genres : int
+        public enum Genres
         {
             Comedy = 1,
             Tragedy = 2,
-            Drama = 3,
-            Ballet = 4,
-            Musical = 5
+            Drama = 3
         }
-        public List<Tickets> Tickets = new List<Tickets>()
+        public List<Tickets> tickets = new List<Tickets>()
         {
-            new Tickets(Kursach_alpha.Tickets.TicketsType.Parter),
-            new Tickets(Kursach_alpha.Tickets.TicketsType.Amphitheater),
-            new Tickets(Kursach_alpha.Tickets.TicketsType.Balcony)
+            new Tickets(Tickets.TicketTypes.Parter),
+            new Tickets(Tickets.TicketTypes.Amphitheater),
+            new Tickets(Tickets.TicketTypes.Balcony)
         };
         static uint id;
         public uint ID;
@@ -40,7 +38,7 @@ namespace Kursach_alpha
         }
         public void BuyTicket(int typeOfTickets, uint numberOfTickets)
         {
-            Tickets[typeOfTickets - 1].Sell(numberOfTickets);
+            tickets[typeOfTickets - 1].Sell(numberOfTickets);
         }
         public void ShowInfo()
         {
@@ -49,8 +47,8 @@ namespace Kursach_alpha
             Console.WriteLine("Genre: " + Genre);
             Console.WriteLine("Date: " + Date.ToString("d"));
             Console.WriteLine("Available tickets: ");
-            foreach (Tickets t in Tickets)
-                Console.WriteLine(t.TicketType + ": " + t.AvailableTickets + "\t\tPrice: " + t.Price);
+            foreach (Tickets t in tickets)
+                Console.WriteLine(t.ticketsType + ": " + t.AvailableTickets + "\t\tPrice: " + t.Price);
         }
     }
 }

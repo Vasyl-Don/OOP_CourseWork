@@ -1,41 +1,41 @@
 ﻿using System;
 
-namespace Kursach_alpha
+namespace Theatre
 {
     public class Tickets
     {
-        public uint TotalNumberOfTickets;
+        public uint totalNumberOfTickets;
         public uint AvailableTickets
         {
-            get { return TotalNumberOfTickets - ReservedTickets - SoldTickets; }
+            get { return totalNumberOfTickets - reservedTickets - soldTickets; }
             set { }
         }
-        public uint ReservedTickets = 0;
-        public uint SoldTickets = 0;
+        public uint reservedTickets = 0;
+        public uint soldTickets = 0;
         public decimal Price { get; }
-        public enum TicketsType : int
+        public enum TicketTypes
         {
             Parter = 1,
             Amphitheater = 2,
             Balcony = 3
         }
-        public TicketsType TicketType;
+        public TicketTypes ticketsType;
 
-        public Tickets(TicketsType ticketsType)
+        public Tickets(TicketTypes ticketsType)
         {
-            TicketType = ticketsType;
+            this.ticketsType = ticketsType;
             switch (ticketsType)
             {
-                case TicketsType.Parter:
-                    TotalNumberOfTickets = 350;
+                case TicketTypes.Parter:
+                    totalNumberOfTickets = 350;
                     Price = 400;
                     break;
-                case TicketsType.Amphitheater:
-                    TotalNumberOfTickets = 100;
+                case TicketTypes.Amphitheater:
+                    totalNumberOfTickets = 100;
                     Price = 250;
                     break;
-                case TicketsType.Balcony:
-                    TotalNumberOfTickets = 50;
+                case TicketTypes.Balcony:
+                    totalNumberOfTickets = 50;
                     Price = 500;
                     break;
             }
@@ -44,22 +44,22 @@ namespace Kursach_alpha
         {
             if (numberOfTickets > AvailableTickets)
                 throw new Exception("We don't have so many tickets");
-            else SoldTickets += numberOfTickets;
+            else soldTickets += numberOfTickets;
         }
         public void Reserve(uint numberOfTickets)
         {
             if (numberOfTickets > AvailableTickets)
                 throw new Exception("We don't have so many tickets");
-            else ReservedTickets += numberOfTickets;
+            else reservedTickets += numberOfTickets;
         }
         public void SellReserved(uint numberOfTickets)
         {
-            if (numberOfTickets > ReservedTickets)
+            if (numberOfTickets > reservedTickets)
                 throw new Exception("There are too few reserved tickets");
             else
             {
-                ReservedTickets -= numberOfTickets;
-                SoldTickets += numberOfTickets;
+                reservedTickets -= numberOfTickets;
+                soldTickets += numberOfTickets;
             }
         }
     }
