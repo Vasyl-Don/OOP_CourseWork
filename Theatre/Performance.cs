@@ -17,12 +17,12 @@ namespace Theatre
             new Tickets(Tickets.TicketTypes.Amphitheater),
             new Tickets(Tickets.TicketTypes.Balcony)
         };
-        static uint id;
-        public uint ID;
-        public string Author;
-        public string Name;
-        public Genres Genre;
-        public DateTime Date;
+        private static uint id;
+        public uint ID { get; private set; }
+        public string Author { get; private set; }
+        public string Name { get; private set; }
+        public Genres Genre { get; private set; }
+        public DateTime Date { get; private set; }
         static Performance()
         {
             id = 0;

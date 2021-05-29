@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7D986E5-E447-4A3D-B93F-846CB4F694C6}</ProjectGuid>
+    <ProjectGuid>{AE640E19-296D-47B5-A872-9F9837C99493}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Output</RootNamespace>
-    <AssemblyName>Output</AssemblyName>
+    <RootNamespace>Afisha</RootNamespace>
+    <AssemblyName>Afisha</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Poster.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

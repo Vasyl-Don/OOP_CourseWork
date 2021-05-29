@@ -4,14 +4,14 @@ namespace Theatre
 {
     public class Tickets
     {
-        public uint totalNumberOfTickets;
+        private uint totalNumberOfTickets;
         public uint AvailableTickets
         {
-            get { return totalNumberOfTickets - reservedTickets - soldTickets; }
+            get { return totalNumberOfTickets - ReservedTickets - SoldTickets; }
             set { }
         }
-        public uint reservedTickets = 0;
-        public uint soldTickets = 0;
+        public uint ReservedTickets { get; private set; }
+        public uint SoldTickets { get; private set; }
         public decimal Price { get; }
         public enum TicketTypes
         {
@@ -39,27 +39,29 @@ namespace Theatre
                     Price = 500;
                     break;
             }
+            ReservedTickets = 0;
+            SoldTickets = 0;
         }
         public void Sell(uint numberOfTickets)
         {
             if (numberOfTickets > AvailableTickets)
                 throw new Exception("We don't have so many tickets");
-            else soldTickets += numberOfTickets;
+            else SoldTickets += numberOfTickets;
         }
         public void Reserve(uint numberOfTickets)
         {
             if (numberOfTickets > AvailableTickets)
                 throw new Exception("We don't have so many tickets");
-            else reservedTickets += numberOfTickets;
+            else ReservedTickets += numberOfTickets;
         }
         public void SellReserved(uint numberOfTickets)
         {
-            if (numberOfTickets > reservedTickets)
+            if (numberOfTickets > ReservedTickets)
                 throw new Exception("There are too few reserved tickets");
             else
             {
-                reservedTickets -= numberOfTickets;
-                soldTickets += numberOfTickets;
+                ReservedTickets -= numberOfTickets;
+                SoldTickets += numberOfTickets;
             }
         }
     }
