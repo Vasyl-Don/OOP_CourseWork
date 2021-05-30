@@ -1,10 +1,8 @@
-﻿using System;
-
-namespace Theatre
+﻿namespace Theatre
 {
     public class Tickets
     {
-        private uint totalNumberOfTickets;
+        readonly uint totalNumberOfTickets;
         public uint AvailableTickets
         {
             get { return totalNumberOfTickets - ReservedTickets - SoldTickets; }
@@ -19,10 +17,10 @@ namespace Theatre
             Amphitheater,
             Balcony
         }
-        public TicketsTypes ticketsType;
+        public TicketsTypes TicketsType { get; private set; }
         public Tickets(TicketsTypes ticketsType, uint totalNumberOfTickets, decimal price)
         {
-            this.ticketsType = ticketsType;
+            TicketsType = ticketsType;
             this.totalNumberOfTickets = totalNumberOfTickets;
             Price = price;
             ReservedTickets = 0;

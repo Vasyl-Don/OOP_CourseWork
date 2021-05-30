@@ -11,43 +11,53 @@ namespace Afisha
             Console.WriteLine("Hello");
             List<Performance> performances = new List<Performance>();
             FillList(performances);
+            User user = new User();
             while(true)
             {
-                MyMain(performances);
-            }
-        }
-        static void MyMain(List<Performance> performances)
-        {
-            Console.WriteLine("\n1 - Show full list of performances" +
+                Console.WriteLine("\n1 - Show full list of performances" +
                 "\n2 - Searching system" +
-                "\n3 - Buy tickets to a particular Performance" +
-                "\n4 - Show my tickets" +
+                "\n3 - Buy tickets" +
+                "\n4 - Book tickets" +
+                "\n5 - Buy reserved tickets" +
+                "\n6 - Show my tickets" +
+                "\n7 - Show my reserved tickets" +
                 "\n0 - Exit program");
-            Console.Write("Choose an action: ");
-            string choice = Console.ReadLine();
-            if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "0")
-            {
-                switch(choice)
+                Console.Write("Choose an action: ");
+                string choice = Console.ReadLine();
+                if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5" || choice == "6" || choice == "7" || choice == "0")
                 {
-                    case "1":
-                        ShowFullList(performances);
-                        break;
-                    case "2":
-                        Search(performances);
-                        break;
-                    case "3":
-                        // go back
-                        Console.WriteLine("Here is bying tickets");
-                        break;
-                    case "4":
-                        Console.WriteLine("Here I show you your tickets");
-                        break;
-                    case "0":
-                        Environment.Exit(0);
-                        break;
+                    switch (choice)
+                    {
+                        case "1":
+                            ShowFullList(performances);
+                            break;
+                        case "2":
+                            Search(performances);
+                            break;
+                        case "3":
+                            BuyingTickets(user, performances);
+                            break;
+                        case "4":
+                            Console.WriteLine("Booking tickets");
+                            break;
+                        case "5":
+                            Console.WriteLine("Buying reserved tickets");
+                            break;
+                        case "6":
+                            Console.WriteLine("Your tickets:");
+                            ShowUserTickets(user.ownTickets);
+                            break;
+                        case "7":
+                            Console.WriteLine("Your reserved tickets:");
+                            ShowUserTickets(user.reservedTickets);
+                            break;
+                        case "0":
+                            Environment.Exit(0);
+                            break;
+                    }
                 }
+                else Console.WriteLine("Invalid input data. Try again");
             }
-            else Console.WriteLine("Invalid input data. Try again");
         }
         static void ShowInfo(Performance performance)
         {
@@ -59,7 +69,7 @@ namespace Afisha
             Console.WriteLine("ID: " + performance.ID);
             Console.WriteLine("Available tickets: ");
             foreach (Tickets t in performance.tickets)
-                Console.WriteLine(t.ticketsType + ": " + t.AvailableTickets + "\t\tPrice: " + t.Price);
+                Console.WriteLine(t.TicketsType + ": " + t.AvailableTickets + "\t\tPrice: " + t.Price);
             Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = =");
         }
         static void ShowFullList(List<Performance> performances)
@@ -67,10 +77,15 @@ namespace Afisha
             foreach (Performance p in performances)
                 ShowInfo(p);
         }
-        static void ShowMyTickets(User user)
+        static void ShowUserTickets(List<UserTickets> tickets)
         {
-            Console.WriteLine($"You have tickets for {user.tickets.Count} performances:");
-
+            Console.WriteLine($"You have tickets for {tickets.Count} performances");
+            foreach (UserTickets t in tickets)
+            {
+                Console.WriteLine("Performance ID: " + t.ID);
+                Console.WriteLine("Type of seats: " + t.TicketsType);
+                Console.WriteLine($"You have got {t.NumberOfTickets} tickets");
+            }
         }
         static void Search(List<Performance> performances)
         {
@@ -111,6 +126,8 @@ namespace Afisha
                             }
                         break;
                 }
+                if (!foundPerformances)
+                    Console.WriteLine("No Performances found. Try something else");
             }
             else if (choice == "4")
             {
@@ -120,7 +137,7 @@ namespace Afisha
                     "\n3 - Next 3 weeks" +
                     "\n4 - Particular date" +
                     "\n0 - Go back");
-                Console.Write("Choose an action:");
+                Console.Write("Choose an action: ");
                 string dateChoice = Console.ReadLine();
                 if (dateChoice == "1" || dateChoice == "2" || dateChoice == "3")
                 {
@@ -145,6 +162,8 @@ namespace Afisha
                             foundPerformances = true;
                         }
                     }
+                    if (!foundPerformances)
+                        Console.WriteLine("No Performances found. Try something else");
                 }
                 else if (dateChoice == "0")
                     Search(performances);
@@ -154,17 +173,33 @@ namespace Afisha
                     Search(performances);
                 }
             }
-            else if (choice == "0")
-                MyMain(performances);
+            else if (choice == "0") { }
             else
             {
                 Console.WriteLine("Invalid input data. Try Again");
                 Search(performances);
             }
-            if (!foundPerformances)
+        }
+        static void BuyingTickets(User user, List<Performance> performances)
+        {
+            Console.Write("Input an ID of performance: ");
+            uint.TryParse(Console.ReadLine(), out uint ID);
+            bool performanceFound = false;
+            foreach(Performance p in performances)
             {
-                Console.WriteLine("No Performances found. Try something else");
-                Search(performances);
+                if(p.ID == ID)
+                {
+                    ShowInfo(performances[Convert.ToInt32(ID) - 1]);
+                    Console.Write("Choose a type of seats (Parter/Amphiteater/Balcony): ");
+                    Enum.TryParse(Console.ReadLine(), out Tickets.TicketsTypes ticketsType);
+                    uint numberOfTickets = uint.Parse(Console.ReadLine());
+                    performanceFound = true;
+                    user.AddTickets(user.ownTickets, ID, ticketsType, numberOfTickets);
+                }
+            }
+            if(!performanceFound)
+            {
+                Console.WriteLine("No performance found. Try something else");
             }
         }
         static void FillList(List<Performance> performances)

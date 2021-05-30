@@ -3,12 +3,12 @@
     public class UserTickets
     {
         public uint ID { get; private set; }
-        private Tickets.TicketsTypes ticketsType;
-        public uint OwnReservedTickets { get; internal set; }
-        public uint OwnTickets { get; internal set; }
+        public Tickets.TicketsTypes TicketsType { get; private set; }
+        public uint NumberOfTickets { get; internal set; }
         public UserTickets(uint ID, Tickets.TicketsTypes ticketsType)
         {
-            this.ticketsType = ticketsType;
+            NumberOfTickets = 0;
+            TicketsType = ticketsType;
             this.ID = ID;
         }
     }
