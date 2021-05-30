@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Theatre;
 
-
 namespace Afisha
 {
     class Afisha
@@ -48,11 +47,12 @@ namespace Afisha
                         break;
                 }
             }
-            else Console.WriteLine("Eban, choose something from below");
+            else Console.WriteLine("Invalid input data. Try again");
         }
         static void ShowInfo(Performance performance)
         {
-            Console.WriteLine("\nName: " + performance.Name);
+            Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = =");
+            Console.WriteLine("Name: " + performance.Name);
             Console.WriteLine("Author: " + performance.Author);
             Console.WriteLine("Genre: " + performance.Genre);
             Console.WriteLine("Date: " + performance.Date.ToString("d"));
@@ -60,11 +60,17 @@ namespace Afisha
             Console.WriteLine("Available tickets: ");
             foreach (Tickets t in performance.tickets)
                 Console.WriteLine(t.ticketsType + ": " + t.AvailableTickets + "\t\tPrice: " + t.Price);
+            Console.WriteLine("= = = = = = = = = = = = = = = = = = = = = =");
         }
         static void ShowFullList(List<Performance> performances)
         {
             foreach (Performance p in performances)
                 ShowInfo(p);
+        }
+        static void ShowMyTickets(User user)
+        {
+            Console.WriteLine($"You have tickets for {user.tickets.Count} performances:");
+
         }
         static void Search(List<Performance> performances)
         {
@@ -163,15 +169,15 @@ namespace Afisha
         }
         static void FillList(List<Performance> performances)
         {
-            performances.Add(new Performance("William Shakespeare", "Romeo and Juliett", Performance.Genres.Tragedy, new DateTime(2021, 6, 18)));
-            performances.Add(new Performance("William Shakespeare", "Gamlet", Performance.Genres.Tragedy, new DateTime(2021, 6, 19)));
-            performances.Add(new Performance("Ivan Franko", "Stolen Happiness", Performance.Genres.Drama, new DateTime(2021, 6, 25)));
-            performances.Add(new Performance("Mykola Kulish", "Myna Mazailo", Performance.Genres.Comedy, new DateTime(2021, 6, 26)));
-            performances.Add(new Performance("Ivan Kotlyarevsky", "Natalka Poltavka", Performance.Genres.Drama, new DateTime(2021, 7, 2)));
-            performances.Add(new Performance("William Shakespeare", "Midsummer Night's Dream", Performance.Genres.Comedy, new DateTime(2021, 7, 3)));
-            performances.Add(new Performance("Erich Remarque", "Three Comrades", Performance.Genres.Drama, new DateTime(2021, 7, 3)));
-            performances.Add(new Performance("Bernard Shaw", "Pygmalion", Performance.Genres.Comedy, new DateTime(2021, 7, 4)));
-            performances.Add(new Performance("William Shakespeare", "King Lear", Performance.Genres.Tragedy, new DateTime(2021, 7, 11)));
+            performances.Add(new Performance("William Shakespeare", "Romeo and Juliett", Performance.Genres.Tragedy, new DateTime(2021, 6, 18), 400, 300, 500));
+            performances.Add(new Performance("William Shakespeare", "Gamlet", Performance.Genres.Tragedy, new DateTime(2021, 6, 19), 450, 350, 550));
+            performances.Add(new Performance("Ivan Franko", "Stolen Happiness", Performance.Genres.Drama, new DateTime(2021, 6, 25), 350, 250, 400));
+            performances.Add(new Performance("Mykola Kulish", "Myna Mazailo", Performance.Genres.Comedy, new DateTime(2021, 6, 26), 350, 250, 400));
+            performances.Add(new Performance("Ivan Kotlyarevsky", "Natalka Poltavka", Performance.Genres.Drama, new DateTime(2021, 7, 2), 400, 225, 450));
+            performances.Add(new Performance("William Shakespeare", "Midsummer Night's Dream", Performance.Genres.Comedy, new DateTime(2021, 7, 3), 320, 250, 350));
+            performances.Add(new Performance("Erich Remarque", "Three Comrades", Performance.Genres.Drama, new DateTime(2021, 7, 3), 325, 300, 380));
+            performances.Add(new Performance("Bernard Shaw", "Pygmalion", Performance.Genres.Comedy, new DateTime(2021, 7, 4), 350, 325, 400));
+            performances.Add(new Performance("William Shakespeare", "King Lear", Performance.Genres.Tragedy, new DateTime(2021, 7, 11), 400, 325, 450));
         }
     }
 }
