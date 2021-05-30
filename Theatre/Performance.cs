@@ -38,23 +38,18 @@ namespace Theatre
                 new Tickets(Tickets.TicketsTypes.Balcony, 50, balconyPrice)
             };
         }
-        public Performance(Performance performance)
+        public void BuyTicket(int typeOfTikcets, uint numberOfTickets)
         {
-            ID = performance.ID;
-            Author = performance.Author;
-            Name = performance.Name;
-            Genre = performance.Genre;
-            Date = performance.Date;
-            tickets = new List<Tickets>()
-            {
-               //new Tickets(Tickets.TicketsTypes.Parter),
-               //new Tickets(Tickets.TicketsTypes.Amphitheater),
-               //new Tickets(Tickets.TicketsTypes.Balcony)
-            };
+            tickets[typeOfTikcets - 1].SoldTickets += numberOfTickets;
         }
-        public void BuyTicket(int typeOfTickets, uint numberOfTickets)
+        public void ReserveTicket(int typeOfTickets, uint numberOfTickets)
         {
-            tickets[typeOfTickets - 1].Sell(numberOfTickets);
+            tickets[typeOfTickets - 1].ReservedTickets += numberOfTickets;
+        }
+        public void BuyReservedTickets(int typeOfTickets, uint numberOfTickets)
+        {
+            tickets[typeOfTickets - 1].ReservedTickets -= numberOfTickets;
+            tickets[typeOfTickets - 1].SoldTickets += numberOfTickets;
         }
     }
 }
