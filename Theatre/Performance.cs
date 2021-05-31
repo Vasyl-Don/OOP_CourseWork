@@ -37,15 +37,15 @@ namespace Theatre
                 new Tickets(Tickets.TicketsTypes.Balcony, 50, balconyPrice)
             };
         }
-        public void BuyTicket(int ticketsType, uint numberOfTickets)
+        public void SellTickets(int ticketsType, uint numberOfTickets)
         {
             tickets[ticketsType].SoldTickets += numberOfTickets;
         }
-        public void ReserveTicket(int ticketsType, uint numberOfTickets)
+        public void ReserveTickets(int ticketsType, uint numberOfTickets)
         {
             tickets[ticketsType].ReservedTickets += numberOfTickets;
         }
-        public void BuyReservedTickets(int ticketsType, uint numberOfTickets)
+        public void SellReservedTickets(int ticketsType, uint numberOfTickets)
         {
             tickets[ticketsType].ReservedTickets -= numberOfTickets;
             tickets[ticketsType].SoldTickets += numberOfTickets;

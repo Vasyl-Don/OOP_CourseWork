@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CashRegister.cs" />
+    <Compile Include="Output.cs" />
     <Compile Include="Performance.cs" />
     <Compile Include="Tickets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
