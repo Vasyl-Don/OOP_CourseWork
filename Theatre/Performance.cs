@@ -5,19 +5,13 @@ namespace Theatre
 {
     public class Performance
     {
-        public enum Genres
-        {
-            Comedy,
-            Tragedy,
-            Drama
-        }
         public List<Tickets> tickets;
         private static uint id;
-        public uint ID { get; private set; }
-        public string Author { get; private set; }
-        public string Name { get; private set; }
-        public Genres Genre { get; private set; }
-        public DateTime Date { get; private set; }
+        public uint ID { get; }
+        public string Author { get; }
+        public string Name { get; }
+        public Genres Genre { get; }
+        public DateTime Date { get; }
         static Performance()
         {
             id = 0;
@@ -32,9 +26,9 @@ namespace Theatre
             this.Date = Date;
             tickets = new List<Tickets>()
             {
-                new Tickets(Tickets.TicketsTypes.Parter, 300, parterPrice),
-                new Tickets(Tickets.TicketsTypes.Amphitheater, 150, amphitheaterPrice),
-                new Tickets(Tickets.TicketsTypes.Balcony, 50, balconyPrice)
+                new Tickets(TicketsTypes.Parter, 300, parterPrice),
+                new Tickets(TicketsTypes.Amphitheater, 150, amphitheaterPrice),
+                new Tickets(TicketsTypes.Balcony, 50, balconyPrice)
             };
         }
         public void SellTickets(int ticketsType, uint numberOfTickets)

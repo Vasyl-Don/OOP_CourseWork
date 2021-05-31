@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31313.79
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Theatre", "Theatre\Theatre.csproj", "{20DB7A56-22F0-4919-A1BA-C696CD0CFBED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Afisha", "Afisha\Afisha.csproj", "{AE640E19-296D-47B5-A872-9F9837C99493}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poster", "Afisha\Poster.csproj", "{AE640E19-296D-47B5-A872-9F9837C99493}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

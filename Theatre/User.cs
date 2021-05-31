@@ -4,9 +4,14 @@ namespace Theatre
 {
     public class User
     {
-        public List<UserTickets> ownTickets = new List<UserTickets>();
-        public List<UserTickets> ownReservedTickets = new List<UserTickets>();
-        public void AddTickets(List<UserTickets> ticketsList, uint ID, Tickets.TicketsTypes ticketsType, uint numberOfTickets)
+        public List<UserTickets> ownTickets;
+        public List<UserTickets> ownReservedTickets;
+        public User()
+        {
+            ownTickets = new List<UserTickets>();
+            ownReservedTickets = new List<UserTickets>();
+        }
+        public void AddTickets(List<UserTickets> ticketsList, uint ID, TicketsTypes ticketsType, uint numberOfTickets)
         {
             bool ticketsExist = false;
             foreach (UserTickets t in ticketsList)
@@ -23,7 +28,7 @@ namespace Theatre
                 AddTickets(ticketsList, ID, ticketsType, numberOfTickets);
             }
         }
-        public void RemoveTickets(List<UserTickets> ticketsList, uint ID, Tickets.TicketsTypes ticketsType, uint numberOfTickets)
+        public void RemoveTickets(List<UserTickets> ticketsList, uint ID, TicketsTypes ticketsType, uint numberOfTickets)
         {
             for (int i = 0; i < ticketsList.Count; i++)
             {
